@@ -5,4 +5,4 @@ push:
 	docker push firemango/octopz:latest
 
 package:
-	go build -o octopz ../
+	GOOS=linux CGO_ENABLED=0 go build -o octopz ../
