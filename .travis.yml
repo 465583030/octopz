@@ -10,7 +10,7 @@ go:
   - 1.7.4
 
 script:
-  - docker login -u $HUB_USERNAME -p $HUB_PASSWORD
+  - docker login -e $HUB_EMAIL -u $HUB_USERNAME -p $HUB_PASSWORD
   - make deps
   - make test
   - make -C packaging package
