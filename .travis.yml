@@ -9,6 +9,6 @@ script:
   - docker login -u $HUB_USERNAME -p $HUB_PASSWORD
   - make deps
   - make test
-  - make -C packaging build
   - make -C packaging package
+  - make -C packaging build
   - make -C packaging push
