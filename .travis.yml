@@ -3,12 +3,12 @@ sudo: false
 language: go
 
 go:
-	- 1.7.4
+  - 1.7.4
 
 script:
-	- docker login -u $HUB_USERNAME -p $HUB_PASSWORD
-	- make deps
-	- make test
-	- packaging/make build
-	- packaging/make package
-	- packaging/make push
+  - docker login -u $HUB_USERNAME -p $HUB_PASSWORD
+  - make deps
+  - make test
+  - packaging/make build
+  - packaging/make package
+  - packaging/make push
