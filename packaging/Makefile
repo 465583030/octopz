@@ -1,8 +1,8 @@
 build:
-  docker build -t firemango/octopz .
+	docker build -t firemango/octopz .
 
 push:
-  docker push firemango/octopz:latest
+	docker push firemango/octopz:latest
 
 package:
-  go build -o octopz ../
+	go build -o octopz ../
