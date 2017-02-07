@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"github.com/Firemango/octopz/admin"
 	"github.com/Firemango/octopz/routing"
+	"github.com/Firemango/octopz/state"
 	"github.com/kelseyhightower/envconfig"
 	"log"
 	"net/http"
@@ -17,7 +19,9 @@ type Config struct {
 
 func main() {
 	ar := routing.Router{}
-	var c Config
+	c := Config{}
+
+	admin.Routes(&ar, &state.Context{})
 
 	err := envconfig.Process("octopz", &c)
 	if err != nil {
