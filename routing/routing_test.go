@@ -1,6 +1,8 @@
 package routing
 
 import (
+	"fmt"
+	"github.com/gorilla/mux"
 	"net/http"
 	"testing"
 )
@@ -19,5 +21,18 @@ func TestAddRouteToRouter(t *testing.T) {
 	if r.Routes[0].Name != "TestRoute" {
 		t.Error("Route was not added.")
 	}
+
+	g := r.ToMux()
+
+	g.Walk(func(route *mux.Route, router *mux.Router, ancestors []*mux.Route) error {
+		tr, err := route.GetPathTemplate()
+		if err != nil {
+			return err
+		}
+		if tr != "/test" {
+			t.Error(fmt.Sprintf("Route failed: %s", tr))
+		}
+		return nil
+	})
 
 }
