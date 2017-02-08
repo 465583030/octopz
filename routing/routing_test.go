@@ -23,7 +23,6 @@ func TestAddRouteToRouter(t *testing.T) {
 	}
 
 	g := r.ToMux()
-
 	g.Walk(func(route *mux.Route, router *mux.Router, ancestors []*mux.Route) error {
 		tr, err := route.GetPathTemplate()
 		if err != nil {
