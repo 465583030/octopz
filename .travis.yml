@@ -4,6 +4,7 @@ language:
   - go
 
 services:
+  - redis-server
   - docker
 
 go:
