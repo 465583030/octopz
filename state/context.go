@@ -1,9 +1,9 @@
 package state
 
 import (
-	"gopkg.in/redis.v5"
+	"github.com/Firemango/octopz/datastore"
 )
 
 type Context struct {
-	Redis *redis.Client
+	Datastore *datastore.Datastore
 }

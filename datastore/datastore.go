@@ -1,7 +1,9 @@
 package datastore
 
 import (
-	"github.com/Firemango/octopz/state"
+	"fmt"
+	"github.com/Firemango/octopz/config"
+	"gopkg.in/redis.v5"
 )
 
 type Message struct {
@@ -10,7 +12,7 @@ type Message struct {
 }
 
 type Datastore struct {
-	Context          *state.Context
+	Redis            *redis.Client
 	BroadcastChannel chan Message
 }
 
@@ -19,7 +21,7 @@ func (ds *Datastore) Broadcast(message Message) {
 }
 
 func (ds *Datastore) Listen(topic string, c chan Message) {
-	sub, err := ds.Context.Redis.Subscribe(topic)
+	sub, err := ds.Redis.Subscribe(topic)
 	if err != nil {
 		panic(err)
 	}
@@ -39,15 +41,35 @@ func (ds *Datastore) Start() {
 	for {
 		message := <-ds.BroadcastChannel
 
-		err := ds.Context.Redis.Set(message.Key, message.Value, 0).Err()
+		err := ds.Redis.Set(message.Key, message.Value, 0).Err()
 		if err != nil {
 			panic(err)
 		}
 
-		err = ds.Context.Redis.Publish("test", message.Value).Err()
+		err = ds.Redis.Publish("test", message.Value).Err()
 		if err != nil {
 			panic(err)
 		}
 
 	}
+}
+
+func NewDatastore(c config.Config) Datastore {
+
+	r := redis.NewClient(&redis.Options{
+		Addr:     fmt.Sprintf("%s:%d", c.RedisHost, c.RedisPort),
+		Password: c.RedisPassword,
+		DB:       0,
+	})
+
+	ch := make(chan Message)
+
+	ds := Datastore{
+		Redis:            r,
+		BroadcastChannel: ch,
+	}
+
+	go ds.Start()
+
+	return ds
 }

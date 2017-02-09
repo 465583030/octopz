@@ -6,5 +6,5 @@ import (
 )
 
 func Routes(r *routing.Router, context *state.Context) {
-	r.AddRoute(routing.Route{"RegisterRoute", "GET", "/register_route", RegisterRoute(context)})
+	r.AddRoute(routing.Route{"RegisterRoute", "POST", "/register_route", RegisterRoute(context)})
 }
