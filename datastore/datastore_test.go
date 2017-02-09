@@ -26,7 +26,6 @@ func TestBroadcastMessage(t *testing.T) {
 		Value: "test",
 	}
 
-	go ds.Start()
 	go ds.Broadcast(message)
 
 	go func() {
