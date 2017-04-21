@@ -1,6 +1,6 @@
 # octopz
 
-A WIP for a small, simple reverse proxy
+A WIP for a small, simple reverse proxy.
 
 ### Goals:
 
