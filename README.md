@@ -4,7 +4,7 @@ A WIP for a small, simple reverse proxy.
  
 ### Goals:  
 
-- Ease of use
+- Ease of use 
 - Flexibility
 - Speed
 
