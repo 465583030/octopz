@@ -2,7 +2,7 @@
 
 A WIP for a small, simple reverse proxy.  
 
-### Goals:
+### Goals:  
 
 - Ease of use
 - Flexibility
