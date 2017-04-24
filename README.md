@@ -1,7 +1,7 @@
 # octopz
 
 A WIP for a small, simple reverse proxy.   
- 
+  
 ### Goals:  
 
 - Ease of use 
